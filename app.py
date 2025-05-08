@@ -1,189 +1,215 @@
-import datetime
-import pandas as pd
 import streamlit as st
+import pandas as pd
 import joblib
-from sklearn.preprocessing import StandardScaler
-import io
+import pickle
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
-# File buffer for Excel download
-buffer = io.BytesIO()
+# -------------------- Fungsi Encoding --------------------
+def encoding(dataset):
+    # Fitur kategorikal & numerikal
+    numerical_features = ['Age_at_enrollment', 'Displaced', 'Previous_qualification_grade', 'Admission_grade', 
+        'Curricular_units_1st_sem_approved', 'Curricular_units_1st_sem_grade', 'Curricular_units_1st_sem_evaluations',
+        'Curricular_units_2nd_sem_approved', 'Curricular_units_2nd_sem_grade', 'Curricular_units_2nd_sem_evaluations',
+        'Tuition_fees_up_to_date', 'Debtor']
+    categorical_features = ['Gender', 'Application_mode', 'Course']
 
-# Data preprocessing function
-def data_preprocessing(data_input, single_data, n):
-    df = pd.read_csv('student_data_filtered.csv')
-    df = df.drop(columns=['Status'], axis=1)  # Drop Status column if present
-    df = pd.concat([data_input, df])
+    df = pd.read_csv('./dataset/dataset_predict.csv')
+    df = df.drop(columns=['Status_Binary'], axis=1)
+    df = pd.concat([dataset, df])
 
-    # Standardize the data
-    df = StandardScaler().fit_transform(df)
+    # Pipeline untuk preprocessing
+    preprocessor = ColumnTransformer(
+        transformers=[
+            ('num', StandardScaler(), numerical_features),
+            ('cat', OneHotEncoder(drop='first'), categorical_features)
+        ],
+        sparse_threshold=0  # <-- paksa output menjadi dense
+    )
 
-    if single_data:
-        return df[[n]]
-    else:
-        return df[0: n]
+    # Transformasi fit dan transform
+    X_processed = preprocessor.fit_transform(df)
 
-# Model prediction function
-def model_predict(df):
-    model = joblib.load('model_rf.joblib')  # Load your pre-trained model
-    return model.predict(df)
+    # Ambil nama kolom hasil encoding
+    ohe_columns = preprocessor.named_transformers_['cat'].get_feature_names_out(categorical_features)
+ 
+    # Gabungkan kolom numerik dan kolom hasil encoding
+    feature_names = numerical_features + ohe_columns.tolist()
 
-# Function to color map the status (for visualization in Streamlit)
-def color_mapping(value):
-    color = 'green' if value == 'Graduate' else 'red'
-    return f'color: {color}'
+    # Jadikan DataFrame
+    X_encoded = pd.DataFrame(X_processed, columns=feature_names)
 
-# Main Streamlit app function
+    return X_encoded
+
+# -------------------- Fungsi Prediksi --------------------
+def predict(model, X_encoded):
+    # Selected features
+    selected_features = ['Previous_qualification_grade',
+                         'Admission_grade',
+                         'Tuition_fees_up_to_date',
+                         'Age_at_enrollment',
+                         'Curricular_units_1st_sem_evaluations',
+                         'Curricular_units_1st_sem_approved',
+                         'Curricular_units_1st_sem_grade',
+                         'Curricular_units_2nd_sem_evaluations',
+                         'Curricular_units_2nd_sem_approved',
+                         'Curricular_units_2nd_sem_grade']
+
+    # Pilih hanya fitur yang terpilih untuk prediksi
+    X_selected = X_encoded[selected_features]
+
+    # Prediksi dengan model
+    y_pred_rfc = model.predict(X_selected)
+
+    return y_pred_rfc[0]
+
 def main():
-    st.title('Jaya Jaya Institute Student Prediction')
+    # SIDEBAR
+    with st.sidebar:
+        st.image("https://upload.wikimedia.org/wikipedia/commons/7/77/Streamlit-logo-primary-colormark-darktext.png")
+        url = "https://github.com/dicodingacademy/dicoding_dataset/tree/main/students_performance"
+        link_text = "Klik link untuk mengunduh dataset"
+        st.write('Submission Akhir: Menyelesaikan Permasalahan Institusi Pendidikan')
+        st.write(f"[{link_text}]({url})")
+        st.write('Copyright (C) 2025 by Meakhel Gunawan')
+    
+    # JUDUL
+    st.title('Prediksi Mahasiswa dari Jaya Jaya Institut')
 
-    # Mappings for categorical data
-    gender_mapping = {'Male': 1, 'Female': 0}
-    marital_status_mapping = {
-        'Single': 1, 'Married': 2, 'Widower': 3, 'Divorced': 4,
-        'Facto Union': 5, 'Legally Separated': 6
-    }
+    # DATA DEMOGRAFIS
+    st.markdown("---")
+    st.markdown("### Data Demografis")
+    col1, col2, col3 = st.columns([3, 1.5, 1.5])
+    with col1:
+        Age_at_enrollment = st.number_input(label='Umur saat Enrollment', value=20,
+            help='Umur mahasiswa ketika mengambil kelas')
+    with col2:
+        Gender = st.radio('Jenis Kelamin', options=['Laki-laki', 'Perempuan'],
+                    help='Jenis kelamin mahasiswa')
+    with col3:
+        Displaced = 1 if st.checkbox(
+            'Displaced', help='Apakah mahasiswa terlantar atau tidak') else 0            
 
-    application_mapping = {
-        1: '1st Phase - General Contingent', 2: 'Ordinance No. 612/93', 5: '1st Phase - Special Contingent (Azores Island)',
-        7: 'Holders of Other Higher Courses', 10: 'Ordinance No. 854-B/99', 15: 'International Student (Bachelor)',
-        16: '1st Phase - Special Contingent (Madeira Island)', 17: '2nd Phase - General Contingent', 
-        18: '3rd Phase - General Contingent', 26: 'Ordinance No. 533-A/99, Item B2 (Different Plan)', 
-        27: 'Ordinance No. 533-A/99, Item B3 (Other Institution)', 39: 'Over 23 Years Old', 42: 'Transfer', 
-        43: 'Change of Course', 44: 'Technological Specialization Diploma Holders', 51: 'Change of Institution/Course', 
-        53: 'Short Cycle Diploma Holders', 57: 'Change of Institution/Course (International)'
-    }
+    # DATA LATAR BELAKANG PENDIDIKAN
+    st.markdown("---")
+    st.markdown("### Data Latar Belakang Pendidikan")
+    col1, col2= st.columns([4, 4])
+    with col1:
+        Application_mode = st.selectbox('Application Mode', (
+            '1st Phase - General Contingent',
+            '1st Phase - Special Contingent (Azores Island)',
+            '1st Phase - Special Contingent (Madeira Island)',
+            '2nd Phase - General Contingent', '3rd Phase - General Contingent',
+            'Ordinance No. 612/93', 'Ordinance No. 854-B/99',
+            'Ordinance No. 533-A/99, Item B2 (Different Plan)',
+            'Ordinance No. 533-A/99, Item B3 (Other Institution)',
+            'International Student (Bachelor)', 'Over 23 Years Old',
+            'Transfer', 'Change of Course', 'Holders of Other Higher Courses',
+            'Short Cycle Diploma Holders',
+            'Technological Specialization Diploma Holders',
+            'Change of Institution/Course',
+            'Change of Institution/Course (International)'),
+            help='Metode aplikasi yang dipakai mahasiswa')
+    with col2:
+        Course = st.selectbox('Course', (
+            'Biofuel Production Technologies',
+            'Animation and Multimedia Design',
+            'Social Service (Evening Attendance)',
+            'Agronomy',
+            'Communication Design',
+            'Veterinary Nursing',
+            'Informatics Engineering',
+            'Equinculture',
+            'Management',
+            'Social Service',
+            'Tourism',
+            'Nursing',
+            'Oral Hygiene',
+            'Advertising and Marketing Management',
+            'Journalism and Communication',
+            'Basic Education',
+            'Management (Evening Attendance)'),
+            help='Kelas yang diambil mahasiswa')
+    col1, col2= st.columns([4, 4])
+    with col1:
+        Previous_qualification_grade = st.number_input(label='Previous Qualification Grade', value=80, min_value=0, max_value=200, 
+            help='Nilai kualifikasi mahasiswa sebelumnya')
+    with col2:
+        Admission_grade = st.number_input(label='Admission Grade', value=80, min_value=0, max_value=200, 
+            help='Nilai admission mahasiswa')
 
-    course_mapping = {
-        33: 'Biofuel Production Technologies', 171: 'Animation and Multimedia Design', 8014: 'Social Service (Evening Attendance)',
-        9003: 'Agronomy', 9070: 'Communication Design', 9085: 'Veterinary Nursing', 9119: 'Informatics Engineering',
-        9130: 'Equinculture', 9147: 'Management', 9238: 'Social Service', 9254: 'Tourism', 9500: 'Nursing', 
-        9556: 'Oral Hygiene', 9670: 'Advertising and Marketing Management', 9773: 'Journalism and Communication', 
-        9853: 'Basic Education', 9991: 'Management (Evening Attendance)'
-    }
+    # DATA KIINERJA AKADEMIK
+    st.markdown("---")
+    st.markdown("### Data Kinerja Akademik")
+    col1, col2, col3= st.columns([4, 4, 4])
+    with col1:
+        Curricular_units_1st_sem_approved = st.number_input(label='Curricular Units 1st Sem Approved', value=0, min_value=0, 
+            help='Unit kurikulum semester 1 yang di approve')
+    with col2:
+        Curricular_units_1st_sem_grade = st.number_input(label='Curricular Units 1st Sem Grade', value=0, min_value=0, 
+            help='Nilai unit kurikulum semester 1')
+    with col3:
+        Curricular_units_1st_sem_evaluations = st.number_input(label='Curricular Units 1st Sem Eval', value=0, min_value=0, 
+            help='Evauasi unit kurikulum semester 1')
+    col1, col2, col3= st.columns([4, 4, 4])
+    with col1:
+        Curricular_units_2nd_sem_approved = st.number_input(label='Curricular Units 2nd Sem Approved', value=0, min_value=0, 
+            help='Unit kurikulum semester 2 yang di approve')
+    with col2:
+        Curricular_units_2nd_sem_grade = st.number_input(label='Curricular Units 2nd Sem Grade', value=0, min_value=0, 
+            help='Nilai unit kurikulum semester 2')
+    with col3:
+        Curricular_units_2nd_sem_evaluations = st.number_input(label='Curricular Units 2nd Sem Eval', value=0, min_value=0, 
+            help='Evauasi unit kurikulum semester 2')
 
-    # Seperate predictions for single data and multiple data
-    tab_single, tab_multiple = st.tabs(['Single Data', 'Multiple Data'])
+    # DATA KONDISI EKONOMI
+    st.markdown("---")
+    st.markdown("### Data Kondisi Ekonomi")
+    col1, col2= st.columns([4, 4])
+    with col1:
+        Tuition_fees_up_to_date = 1 if st.checkbox(
+            'Tuition fees up to date', help='Apakah mahasiswa tidak terlambat dalam pembayaran uang kuliah atau tidak') else 0            
+    with col2:
+        Debtor = 1 if st.checkbox(
+            'Debtor', help='Apakah mahasiswa seorang penghutang atau tidak') else 0            
 
-    # Prediction container for single data using input fields
-    with tab_single:
-        # Collect single data inputs
-        with st.container():
-            col_gender, col_age, col_marital = st.columns([2, 2, 3])
-            with col_gender:
-                gender = st.radio('Gender', options=['Male', 'Female'], help='The gender of the student')
-            with col_age:
-                age = st.number_input('Age at Enrollment', min_value=17, max_value=70, help='The age of the student at the time of enrollment')
-            with col_marital:
-                marital_status = st.selectbox('Marital Status', ('Single', 'Married', 'Widower', 'Divorced', 'Facto Union', 'Legally Separated'),
-                    help='The marital status of the student')
+    st.markdown("---")
+    st.markdown("Akurasi Model: 84%")
 
-        # Input other features for prediction
-        st.write('')
-        st.write('')
-        with st.container():
-            col_application, col_prev_grade, col_admission_grade = st.columns([3, 1.65, 1.1])
-            with col_application:
-                application_mode = st.selectbox('Application Mode', list(application_mapping.values()), help='The method of application used by the student')
-            with col_prev_grade:
-                prev_qualification_grade = st.number_input('Previous Qualification Grade', help='Grade of previous qualification (0-200)', min_value=0, max_value=200)
-            with col_admission_grade:
-                admission_grade = st.number_input('Admission Grade', help="Student's admission grade (0-200)", min_value=0, max_value=200)
+    # Mengubahnya menjadi dataframe
+    data = [[Age_at_enrollment, Gender, Displaced, Application_mode, Course,
+             Previous_qualification_grade, Admission_grade, 
+             Curricular_units_1st_sem_approved, Curricular_units_1st_sem_grade, Curricular_units_1st_sem_evaluations,
+             Curricular_units_2nd_sem_approved, Curricular_units_2nd_sem_grade, Curricular_units_2nd_sem_evaluations,
+             Tuition_fees_up_to_date, Debtor]]
 
-        # Checkbox inputs for binary features
-        with st.container():
-            col_scholarship, col_tuition, col_displaced, col_debtor = st.columns([1.7, 2.1, 1.55, 1])
-            with col_scholarship:
-                scholarship_holder = 1 if st.checkbox('Scholarship', help='Whether the student is a scholarship holder') else 0
-            with col_tuition:
-                tuition_fees = 1 if st.checkbox('Tuition up to date', help="Whether the student's tuition fees are up to date") else 0
-            with col_displaced:
-                displaced = 1 if st.checkbox('Displaced', help='Whether the student is a displaced person') else 0
-            with col_debtor:
-                debtor = 1 if st.checkbox('Debtor', help='Whether the student is a debtor') else 0
+    predict_df = pd.DataFrame(data, columns=[
+        'Age_at_enrollment', 'Gender', 'Displaced', 'Application_mode', 'Course',
+        'Previous_qualification_grade', 'Admission_grade', 
+        'Curricular_units_1st_sem_approved', 'Curricular_units_1st_sem_grade', 'Curricular_units_1st_sem_evaluations',
+        'Curricular_units_2nd_sem_approved', 'Curricular_units_2nd_sem_grade', 'Curricular_units_2nd_sem_evaluations',
+        'Tuition_fees_up_to_date', 'Debtor'])
+    
+    # Memprediksi hasil
+    @st.dialog('Hasil')
+    def hasil(output):
+        status = "Graduate" if output == 1 else "Dropout"
+        # Menambahkan gaya menggunakan Markdown (terbatas pada warna teks)
+        if status == "Graduate":
+            st.markdown(f"### Student Status Prediction: **{status}**")
+        else:
+            st.markdown(f"### Student Status Prediction: **{status}**")
 
-        # Curricular units inputs
-        st.write('')
-        st.write('')
-        with st.container():
-            col_1_enroll, col_2_enroll, col_2_eval = st.columns([1, 1, 1.2])
-            with col_1_enroll:
-                curricular_units_1st_sem_enrolled = st.number_input('Units 1st Semester Enrolled', min_value=0, max_value=26, help='Number of curricular units enrolled by the student in the first semester')
-            with col_2_enroll:
-                curricular_units_2nd_sem_enrolled = st.number_input('Units 2nd Semester Enrolled', min_value=0, max_value=23, help='Number of curricular units enrolled by the student in the second semester')
-            with col_2_eval:
-                curricular_units_2nd_sem_evaluations = st.number_input('Units 2nd Semester Evaluations', min_value=0, max_value=33, help='Number of curricular units evaluations by the student in the second semester')
+    # Tombol prediksi
+    if st.button('✨ Prediksi'):
+        X_encoded = encoding(predict_df)
+        model = joblib.load('./model/joblib_model.pkl')
+        # with open('pickle_model.pkl', 'rb') as file:
+        #    model = pickle.load(file)
+        output = predict(model, X_encoded)
+        hasil(output)
 
-        # Feature data as dictionary
-        data = [[
-            marital_status, application_mapping.get(application_mode), prev_qualification_grade, admission_grade, displaced, debtor, 
-            tuition_fees, gender_mapping.get(gender), scholarship_holder, age, curricular_units_1st_sem_enrolled, curricular_units_2nd_sem_enrolled, 
-            curricular_units_2nd_sem_evaluations
-        ]]
+    st.caption('Copyright (C) 2025 by Meakhel Gunawan')
 
-        # Convert the data to a dataframe for prediction
-        df = pd.DataFrame(data, columns=[
-            'Marital_status', 'Application_mode', 'Previous_qualification_grade', 'Admission_grade', 'Displaced', 'Debtor', 
-            'Tuition_fees_up_to_date', 'Gender', 'Scholarship_holder', 'Age_at_enrollment', 
-            'Curricular_units_1st_sem_enrolled', 'Curricular_units_2nd_sem_enrolled', 'Curricular_units_2nd_sem_evaluations'
-        ])
-
-        # Predict button for single data
-        if st.button('✨ Predict'):
-            data_input = data_preprocessing(df, True, 0)
-            output = model_predict(data_input)
-            prediction = 'Graduate' if output == 1 else 'Dropout'
-            st.write(f'Prediction: {prediction}')
-
-    # Prediction container for multiple data using file upload
-    with tab_multiple:
-        with st.expander('**User Guide**'):
-            st.write("""
-                1. Download the student data Excel template.
-                2. Complete the data in the Excel file.
-                3. Upload the student data file.
-                4. Click the '✨ Predict Data' button.
-                5. The results will be displayed in a table below.
-                6. The results can be downloaded as an Excel file.
-            """)
-            with open('student_data_template.xlsx', 'rb') as file:
-                st.download_button(label='Download Template', data=file, file_name='Student Data Template.xlsx')
-
-        uploaded_file = st.file_uploader(label='Upload Student Data', type=['xlsx', 'xls'])
-
-        if uploaded_file is not None:
-            up = pd.read_excel(uploaded_file)
-            up['ID'] = up['ID'].astype(str)
-
-            # Preview the uploaded data
-            preview = st.slider('**Preview Rows**', 1, len(up), 5)
-            st.dataframe(up.head(preview))
-
-            # Data preprocessing and prediction for multiple rows
-            if st.button('✨ Predict Data'):
-                # Preprocess the uploaded data
-                df_up = data_preprocessing(up, False, len(up))
-                output = model_predict(df_up)
-                prediction = ['Graduate' if pred == 1 else 'Dropout' for pred in output]
-                result = pd.DataFrame({
-                    'ID': up['ID'], 'Name': up['Name'], 'Status': prediction
-                })
-
-                # Display the results
-                st.write('**Results**')
-                st.dataframe(result.style.applymap(color_mapping, subset=['Status']))
-
-                # Prepare the Excel file for download
-                with pd.ExcelWriter(buffer, engine='xlsxwriter') as writer:
-                    result.to_excel(writer, sheet_name='Prediction', index=False)
-
-                # Download button for predictions
-                st.download_button(
-                    label='Download Prediction',
-                    data=buffer.getvalue(),
-                    file_name='Student_Data_Prediction.xlsx',
-                    mime='application/vnd.ms-excel'
-                )
-
-# Run the app
 if __name__ == '__main__':
     main()

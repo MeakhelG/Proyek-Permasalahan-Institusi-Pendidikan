@@ -420,7 +420,6 @@ pygit2==1.18.0
 Pygments==2.19.1
 PyGObject==3.42.0
 PyJWT==2.10.1
-pylibcudf-cu12 @ https://pypi.nvidia.com/pylibcudf-cu12/pylibcudf_cu12-25.2.1-cp311-cp311-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl
 pylibcugraph-cu12==25.2.0
 pylibraft-cu12==25.2.0
 pymc==5.22.0

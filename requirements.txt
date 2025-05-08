@@ -278,7 +278,6 @@ librosa==0.11.0
 libucx-cu12==1.18.1
 libucxx-cu12==0.42.0
 lightgbm==4.5.0
-linux_x86_64.whl
 linkify-it-py==2.0.3
 llvmlite==0.43.0
 locket==1.0.0

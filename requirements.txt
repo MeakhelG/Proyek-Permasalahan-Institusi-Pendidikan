@@ -126,7 +126,6 @@ fsspec==2025.3.2
 future==1.0.0
 gast==0.6.0
 gcsfs==2025.3.2
-GDAL==3.6.4
 gdown==5.2.0
 geemap==0.35.3
 geocoder==1.38.1

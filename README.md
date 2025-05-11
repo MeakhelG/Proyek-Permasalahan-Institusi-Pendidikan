@@ -1,4 +1,25 @@
-# Proyek Akhir: Menyelesaikan Permasalahan Perusahaan Edutech
+# Submission Akhir: Menyelesaikan Permasalahan Institusi Pendidikan ✨
+
+## 📑 Deskripsi
+Submission proyek menyelesaikan permasalahan Institusi Pendidikan ini adalah sebuah proyek akhir untuk penilaian praktik data science dari kelas Belajar Penerapan Data Science yang diberikan oleh Dicoding. Diharapkan dengan proyek ini dapat memberikan insight dan pemahaman mengenai data science.
+
+## 🗂 Struktur Proyek
+- `dataset/` : Folder yang menyimpan semua dataset yang digunakan dalam proyek.
+  - `data_bersih.csv` : Berisi file CSV dari hasil proses cleaning.
+  - `dataset_predict.csv` : Berisi file CSV yang ingin di prediksi oleh model.
+  - `fitur_penting.csv` : Berisi file CSV berupa fitur-fitur penting yang memengaruhi Status Dropout.
+  - `hasil_prediksi_model.csv` : Berisi file CSV dari hasil proses prediksi model.
+- `model/` : Folder yang menyimpan semua model prediksi yang digunakan dalam proyek.
+  - `joblib_model.pkl`: File model Random Forest Classifier yang disimpan oleh joblib dari hasil modeling di `notebook.ipynb`.
+  - `pickle_model.pkl`: File model Random Forest Classifier yang disimpan oleh pickle dari hasil modeling di `notebook.ipynb`.
+- `meakhelg-dashboard-1.jpg` : Halaman pertama dashboard.
+- `meakhelg-dashboard-2.jpg` : Halaman kedua dashboard.
+- `meakhelg-dashboard.pdf`: File dashboard yang telah saya buat untuk submission kali ini dalam bentuk PDF.
+- `meakhelg-video.mkv`: Video penjelasan business dashboard yang telah dibuat dan kesimpulan dari dashboard tersebut.
+- `metabase.db.mv.db`: File database dari Metabase.
+- `app.py`: File yang digunakan untuk menjalankan prediksi machine learning berbasis Streamlit.
+- `notebook.ipynb`: File yang digunakan untuk melakukan Data Understanding, EDA, hingga Modeling, Evaluasi, dan Konklusi.
+- `README.md`: File dokumentasi.
 
 ## Business Understanding
 Jelaskan latar belakang bisnis dari perushaan tersebut.
@@ -9,14 +30,36 @@ Tuliskan seluruh permasalahan bisnis yang akan diselesaikan.
 ### Cakupan Proyek
 Tuliskan cakupan proyek yang akan dikerjakan.
 
-### Persiapan
+## 🔧 Persiapan
+### 💾 **Sumber Data**
+Dataset yang digunakan dalam proyek ini adalah **[Dataset Mahasiswa Jaya Jaya Institut](https://github.com/dicodingacademy/dicoding_dataset/tree/main/students_performance)**, yang disediakan sesuai dengan instruksi pada submission proyek ini.
 
-Sumber data: ....
+### 💻 **Menyiapkan Lingkungan (Environment Setup)**
+Proyek ini memerlukan lingkungan yang sederhana untuk menjalankan **analisis data** dan **dashboard**. Berikut adalah langkah-langkah untuk mempersiapkan lingkungan kerja:
 
-Setup environment:
-```
+#### **1. Menjalankan notebook.ipynb**
+- Pastikan **dependensi**, **paket**, dan **library** yang dibutuhkan telah tersedia. Lihat **file `requirements.txt`** untuk mengetahui daftar dependensi yang diperlukan.
+- Jalankan seluruh isi **notebook.ipynb** di **Google Colab** atau IDE sejenis untuk melihat hasil dari **analisis data**, temuan, dan **insight** yang diperoleh.
 
-```
+
+#### **3. Menjalankan Dashboard**
+Untuk melihat **dashboard** secara langsung, Anda dapat menggunakan **Metabase** dengan bantuan **Docker**. Pastikan **Docker** telah terpasang di sistem Anda.
+**Langkah-langkah untuk menjalankan Metabase menggunakan Docker**:
+1. **Tarik (pull) image Metabase dari Docker Hub** dengan perintah:
+   ```bash
+   docker pull metabase/metabase:latest
+   ```
+
+2. **Jalankan container Metabase** dengan perintah:
+   ```bash
+   docker run -p 3000:3000 --name metabase metabase/metabase
+   ```
+
+3. **Login ke Metabase** menggunakan kredensial berikut:
+   - **Username**: `root@mail.com`
+   - **Password**: `root123`
+
+Dengan mengikuti langkah-langkah ini, Anda dapat memulai **analisis data** dan **dashboard**, serta melihat hasil visualisasi langsung di **Metabase**.
 
 ## Business Dashboard
 Jelaskan tentang business dashboard yang telah dibuat. Jika ada, sertakan juga link untuk mengakses dashboard tersebut.
@@ -28,10 +71,57 @@ Jelaskan cara menjalankan protoype sistem machine learning yang telah dibuat. Se
 
 ```
 
-## Conclusion
-Jelaskan konklusi dari proyek yang dikerjakan.
+## 🔍 Conclusion
+### 🎯 Temuan Utama
+- **Curricular Units (1st & 2nd) Semester Approved**
+* Mahasiswa yang **tidak menyelesaikan atau gagal** pada sejumlah besar mata kuliah semester pertama dan kedua memiliki risiko dropout yang sangat tinggi. Fitur ini merupakan **prediktor paling kuat** dalam model, menunjukkan pentingnya performa akademik awal dalam keberlanjutan studi.
 
-### Rekomendasi Action Items
-Berikan beberapa rekomendasi action items yang harus dilakukan perusahaan guna menyelesaikan permasalahan atau mencapai target mereka.
-- action item 1
-- action item 2
+- **Curricular Units (1st & 2nd) Semester Grade**
+* **Nilai akademik** di dua semester pertama juga sangat berpengaruh. Nilai rendah mencerminkan kemungkinan kurangnya kesiapan atau motivasi belajar yang berdampak pada kelangsungan studi.
+
+3. **Admission Grade & Previous Qualification Grade**
+* Mahasiswa yang masuk dengan **nilai masuk atau latar belakang akademik rendah** cenderung lebih berisiko mengalami dropout. Ini menunjukkan bahwa **seleksi masuk** dan kesiapan awal mahasiswa penting untuk kesuksesan akademik jangka panjang.
+
+4. **Age at Enrollment**
+* Usia saat masuk kuliah juga berpengaruh. Mahasiswa dengan usia yang terlalu muda atau terlalu tua dibanding rata-rata mungkin menghadapi tantangan integrasi sosial atau penyesuaian studi.
+
+5. **Tuition Fees Up to Date**
+* Keterlambatan pembayaran biaya kuliah merupakan indikator risiko dropout, menunjukkan adanya **masalah keuangan** atau kurangnya komitmen terhadap studi.
+
+### 🧠 Model Terbaik
+Model **Random Forest** memberikan performa terbaik:
+- Accuracy: **84.07%**
+- Precision: **85.55%**
+- Recall: **90.51%**
+- F1-Score: **87.96%**
+Model ini menunjukkan **akurasi dan sensitivitas yang sangat baik**, khususnya dalam mendeteksi mahasiswa yang berisiko dropout, menjadikannya alat prediksi yang handal untuk intervensi dini.
+
+### 📊 Feature Importance (Top 8)
+1. `Curricular_units_2nd_sem_approved` – 25.92%
+2. `Curricular_units_1st_sem_approved` – 14.4%
+3. `Curricular_units_2nd_sem_grade` – 12.18%
+4. `Curricular_units_1st_sem_grade` – 8.6%
+5. `Admission_grade` – 7.66%
+6. `Age_at_enrollment` – 7.26% 
+7. `Previous_qualification_grade` – 6.68%
+8. `Tuition_fees_up_to_date` – 5.95%
+
+### ✍️ Rekomendasi Action Items untuk Mengurangi Dropout Mahasiswa:
+1. **Program Intervensi Dini untuk Mahasiswa Berisiko**
+* Gunakan model prediktif untuk **mengidentifikasi mahasiswa** dengan jumlah mata kuliah tidak lulus atau nilai rendah di semester awal, dan lakukan **pembinaan akademik atau mentoring personal** sejak dini.
+
+2. **Pendampingan Akademik dan Tutor Sebaya**
+* Mahasiswa dengan nilai rendah dapat diberikan akses ke **tutor sebaya**, **kelas remedial**, atau **konseling belajar** untuk membantu mereka memperbaiki performa akademik.
+
+3. **Perbaiki Proses Seleksi Masuk dan Orientasi**
+* Tingkatkan kualitas proses penerimaan mahasiswa agar hanya mahasiswa dengan kesiapan akademik yang baik diterima. Tambahkan **program orientasi dan pembekalan awal** agar mahasiswa lebih siap secara mental dan akademik.
+
+4. **Bantuan Finansial dan Monitoring Pembayaran**
+* Mahasiswa dengan keterlambatan pembayaran perlu difasilitasi dengan **beasiswa darurat**, **konsultasi keuangan**, atau **penjadwalan ulang pembayaran** untuk mencegah dropout akibat kendala biaya.
+
+5. **Perhatikan Profil Usia Masuk**
+* Sediakan program adaptasi khusus untuk mahasiswa dengan usia non-konvensional, misalnya yang masuk setelah bekerja atau baru lulus sekolah, agar mereka bisa menyesuaikan diri dengan lingkungan akademik.
+
+
+### 🧾 **Kesimpulan**
+Dengan memahami faktor-faktor utama yang menyebabkan **dropout mahasiswa** dan menerapkan **model prediktif berbasis Random Forest**, institusi pendidikan dapat melakukan **intervensi lebih awal dan tepat sasaran**. Tindakan strategis berdasarkan data ini dapat secara signifikan menurunkan tingkat dropout dan meningkatkan keberhasilan studi mahasiswa secara keseluruhan.

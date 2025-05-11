@@ -42,6 +42,7 @@ Proyek ini memerlukan lingkungan yang sederhana untuk menjalankan **analisis dat
 - Jalankan seluruh isi **notebook.ipynb** di **Google Colab** atau IDE sejenis untuk melihat hasil dari **analisis data**, temuan, dan **insight** yang diperoleh.
 
 
+
 #### **3. Menjalankan Dashboard**
 Untuk melihat **dashboard** secara langsung, Anda dapat menggunakan **Metabase** dengan bantuan **Docker**. Pastikan **Docker** telah terpasang di sistem Anda.
 **Langkah-langkah untuk menjalankan Metabase menggunakan Docker**:
@@ -73,20 +74,9 @@ Jelaskan cara menjalankan protoype sistem machine learning yang telah dibuat. Se
 
 ## 🔍 Conclusion
 ### 🎯 Temuan Utama
-- **Curricular Units (1st & 2nd) Semester Approved**
-* Mahasiswa yang **tidak menyelesaikan atau gagal** pada sejumlah besar mata kuliah semester pertama dan kedua memiliki risiko dropout yang sangat tinggi. Fitur ini merupakan **prediktor paling kuat** dalam model, menunjukkan pentingnya performa akademik awal dalam keberlanjutan studi.
-
-- **Curricular Units (1st & 2nd) Semester Grade**
-* **Nilai akademik** di dua semester pertama juga sangat berpengaruh. Nilai rendah mencerminkan kemungkinan kurangnya kesiapan atau motivasi belajar yang berdampak pada kelangsungan studi.
-
-3. **Admission Grade & Previous Qualification Grade**
-* Mahasiswa yang masuk dengan **nilai masuk atau latar belakang akademik rendah** cenderung lebih berisiko mengalami dropout. Ini menunjukkan bahwa **seleksi masuk** dan kesiapan awal mahasiswa penting untuk kesuksesan akademik jangka panjang.
-
-4. **Age at Enrollment**
-* Usia saat masuk kuliah juga berpengaruh. Mahasiswa dengan usia yang terlalu muda atau terlalu tua dibanding rata-rata mungkin menghadapi tantangan integrasi sosial atau penyesuaian studi.
-
-5. **Tuition Fees Up to Date**
-* Keterlambatan pembayaran biaya kuliah merupakan indikator risiko dropout, menunjukkan adanya **masalah keuangan** atau kurangnya komitmen terhadap studi.
+- **Curricular Units (1st & 2nd) Semester Approved dan Grade** adalah fitur-fitur yang paling berpengaruh yang dimana mahasiswa yang **tidak menyelesaikan atau gagal** pada sejumlah besar mata kuliah serta dibarengi dengan **nilai akademik** yang rendah pada semester pertama dan kedua memiliki risiko dropout yang sangat tinggi. 
+- **Admission Grade & Previous Qualification Grade** yang rendah juga cenderung lebih berisiko mengalami dropout yang menunjukkan bahwa **seleksi masuk** dan kesiapan awal mahasiswa penting untuk kesuksesan akademik jangka panjang.
+- Faktor-faktor lain seperti **Age at Enrollment**, **Tuition Fees Up to Date**, bahkan **Debtor** juga berpengaruh meskipun tidak terlalu kuat.
 
 ### 🧠 Model Terbaik
 Model **Random Forest** memberikan performa terbaik:
@@ -108,20 +98,19 @@ Model ini menunjukkan **akurasi dan sensitivitas yang sangat baik**, khususnya d
 
 ### ✍️ Rekomendasi Action Items untuk Mengurangi Dropout Mahasiswa:
 1. **Program Intervensi Dini untuk Mahasiswa Berisiko**
-* Gunakan model prediktif untuk **mengidentifikasi mahasiswa** dengan jumlah mata kuliah tidak lulus atau nilai rendah di semester awal, dan lakukan **pembinaan akademik atau mentoring personal** sejak dini.
+   Gunakan model prediktif untuk **mengidentifikasi mahasiswa** dengan jumlah mata kuliah tidak lulus atau nilai rendah di semester awal, dan lakukan **pembinaan akademik atau mentoring personal** sejak dini.
 
-2. **Pendampingan Akademik dan Tutor Sebaya**
-* Mahasiswa dengan nilai rendah dapat diberikan akses ke **tutor sebaya**, **kelas remedial**, atau **konseling belajar** untuk membantu mereka memperbaiki performa akademik.
+2. **Pendampingan Akademik dan Tutor Sebaya**    
+   Mahasiswa dengan nilai rendah dapat diberikan akses ke **tutor sebaya**, **kelas remedial**, atau **konseling belajar** untuk membantu mereka memperbaiki performa akademik.
 
 3. **Perbaiki Proses Seleksi Masuk dan Orientasi**
-* Tingkatkan kualitas proses penerimaan mahasiswa agar hanya mahasiswa dengan kesiapan akademik yang baik diterima. Tambahkan **program orientasi dan pembekalan awal** agar mahasiswa lebih siap secara mental dan akademik.
+   Tingkatkan kualitas proses penerimaan mahasiswa agar hanya mahasiswa dengan kesiapan akademik yang baik diterima. Tambahkan **program orientasi dan pembekalan awal** agar mahasiswa lebih siap secara mental dan akademik.
 
 4. **Bantuan Finansial dan Monitoring Pembayaran**
-* Mahasiswa dengan keterlambatan pembayaran perlu difasilitasi dengan **beasiswa darurat**, **konsultasi keuangan**, atau **penjadwalan ulang pembayaran** untuk mencegah dropout akibat kendala biaya.
+   Mahasiswa dengan keterlambatan pembayaran perlu difasilitasi dengan **beasiswa darurat**, **konsultasi keuangan**, atau **penjadwalan ulang pembayaran** untuk mencegah dropout akibat kendala biaya.
 
 5. **Perhatikan Profil Usia Masuk**
-* Sediakan program adaptasi khusus untuk mahasiswa dengan usia non-konvensional, misalnya yang masuk setelah bekerja atau baru lulus sekolah, agar mereka bisa menyesuaikan diri dengan lingkungan akademik.
-
+   Sediakan program adaptasi khusus untuk mahasiswa dengan usia non-konvensional, misalnya yang masuk setelah bekerja atau baru lulus sekolah, agar mereka bisa menyesuaikan diri dengan lingkungan akademik.
 
 ### 🧾 **Kesimpulan**
 Dengan memahami faktor-faktor utama yang menyebabkan **dropout mahasiswa** dan menerapkan **model prediktif berbasis Random Forest**, institusi pendidikan dapat melakukan **intervensi lebih awal dan tepat sasaran**. Tindakan strategis berdasarkan data ini dapat secara signifikan menurunkan tingkat dropout dan meningkatkan keberhasilan studi mahasiswa secara keseluruhan.

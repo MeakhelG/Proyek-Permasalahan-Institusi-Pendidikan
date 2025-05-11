@@ -21,14 +21,38 @@ Submission proyek menyelesaikan permasalahan Institusi Pendidikan ini adalah seb
 - `notebook.ipynb`: File yang digunakan untuk melakukan Data Understanding, EDA, hingga Modeling, Evaluasi, dan Konklusi.
 - `README.md`: File dokumentasi.
 
-## Business Understanding
-Jelaskan latar belakang bisnis dari perushaan tersebut.
+## 📌 Business Understanding
+### 🎯 Latar Belakang
+**Jaya Jaya Institut** merupakan institusi pendidikan tinggi yang telah berdiri sejak tahun 2000 dan dikenal dengan reputasinya dalam mencetak lulusan berkualitas. Namun, dalam beberapa tahun terakhir, institusi ini menghadapi tantangan serius yaitu **tingginya angka siswa dropout** atau tidak menyelesaikan pendidikan mereka.    
+Fenomena ini bukan hanya berdampak pada reputasi akademik institusi, tetapi juga pada efisiensi operasional, alokasi sumber daya pengajaran, dan keberhasilan program pendidikan jangka panjang. Jika tidak ditangani secara sistematis, masalah ini berpotensi merugikan baik dari sisi akademik maupun manajerial.
 
-### Permasalahan Bisnis
-Tuliskan seluruh permasalahan bisnis yang akan diselesaikan.
+### ❗ Permasalahan Utama
+Tingginya angka dropout mencerminkan kemungkinan adanya permasalahan struktural dan individual seperti:
+* Ketidaksiapan akademik di perkuliahan yang ditunjukkan dari nilai rendah dan banyaknya mata kuliah tidak lulus,
+* Masalah keuangan seperti keterlambatan pembayaran biaya pendidikan,
+* Kurangnya motivasi atau ketidakcocokan dengan program studi yang dipilih,
+* Faktor usia masuk dan latar belakang pendidikan sebelumnya,
+* Tidak adanya sistem deteksi dini untuk memantau siswa yang berisiko dropout.
+Permasalahan ini perlu ditangani dengan pendekatan berbasis data agar intervensi yang dilakukan dapat lebih cepat, tepat, dan berdampak nyata.
 
-### Cakupan Proyek
-Tuliskan cakupan proyek yang akan dikerjakan.
+### 🎯 Tujuan Proyek Permasalahan Institusi Pendidikan
+Proyek ini bertujuan untuk menyelesaikan permasalahan pendidikan yang dihadapi Jaya Jaya Institut dengan:
+1. **Mengidentifikasi faktor-faktor utama** yang memengaruhi kemungkinan siswa mengalami dropout.
+2. **Membangun model prediktif** berbasis machine learning untuk mendeteksi risiko dropout sedini mungkin.
+3. **Menyediakan business dashboard** interaktif yang dapat digunakan oleh manajemen akademik untuk memantau performa siswa dan merancang strategi intervensi secara proaktif.
+
+### 📌 Cakupan Analisis
+Analisis difokuskan pada sejumlah aspek penting yang diyakini berkontribusi terhadap fenomena dropout, antara lain:
+- **Demografis**: seperti Usia, Gender, Kewarganegaraan, Status Pernikahan, dan lain-lain yang dapat memengaruhi akademik.
+- **Latar Belakang Pendidikan**: seperti Nilai-nilai sebelum masuk ke perguruan, Kualifikasi Orang Tua, Pekerjaan Orang Tua, Program Studi, hingga nilai-nilai lainnya.
+- **Kinerja Akademik**: jumlah mata kuliah yang diselesaikan, nilai semester, IPK, hingga seorang yang pemegang beasiswa atau tidak.
+- **Faktor Finansial dan Kompensasi**: keterlambatan atau ketidakpatuhan pembayaran biaya pendidikan, apakah seorang debtor atau tidak, hingga analisis Unemployment_rate, Inflation_rate, dan GDP.
+
+### ⚙️ Strategi Analisis
+- **Understanding and Exploratory Data Analysis (EDA)**: memahami pola data, melakukan visualisasi tren dropout, dan mengamati hubungan antara variabel.
+- **Preprocessing Data**: meliputi pembersihan data, encoding fitur kategorikal, penyeimbangan data dengan SMOTE, serta pemilihan fitur relevan.
+- **Pemodelan dan Evaluasi**: membandingkan sejumlah algoritma seperti Logistic Regression, Random Forest, XGBoost, SVM, dan KNN untuk menemukan model terbaik berdasarkan metrik klasifikasi seperti Accuracy, Precision, Recall, dan F1-Score.
+- **Prediksi dan Visualisasi berbasis Streamlit**: memanfaatkan model terbaik untuk memprediksi risiko dropout dan membuat kerangka berbasis Streamlit yang bisa digunakan oleh semua orang.
 
 ## 🔧 Persiapan
 ### 💾 **Sumber Data**

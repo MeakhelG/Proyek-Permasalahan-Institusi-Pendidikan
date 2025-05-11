@@ -97,19 +97,19 @@ Model ini menunjukkan **akurasi dan sensitivitas yang sangat baik**, khususnya d
 8. `Tuition_fees_up_to_date` – 5.95%
 
 ### ✍️ Rekomendasi Action Items untuk Mengurangi Dropout Mahasiswa:
-1. **Program Intervensi Dini untuk Mahasiswa Berisiko**
+1. **Program Intervensi Dini untuk Mahasiswa Berisiko**    
    Gunakan model prediktif untuk **mengidentifikasi mahasiswa** dengan jumlah mata kuliah tidak lulus atau nilai rendah di semester awal, dan lakukan **pembinaan akademik atau mentoring personal** sejak dini.
 
 2. **Pendampingan Akademik dan Tutor Sebaya**    
    Mahasiswa dengan nilai rendah dapat diberikan akses ke **tutor sebaya**, **kelas remedial**, atau **konseling belajar** untuk membantu mereka memperbaiki performa akademik.
 
-3. **Perbaiki Proses Seleksi Masuk dan Orientasi**
+3. **Perbaiki Proses Seleksi Masuk dan Orientasi**    
    Tingkatkan kualitas proses penerimaan mahasiswa agar hanya mahasiswa dengan kesiapan akademik yang baik diterima. Tambahkan **program orientasi dan pembekalan awal** agar mahasiswa lebih siap secara mental dan akademik.
 
-4. **Bantuan Finansial dan Monitoring Pembayaran**
+4. **Bantuan Finansial dan Monitoring Pembayaran**    
    Mahasiswa dengan keterlambatan pembayaran perlu difasilitasi dengan **beasiswa darurat**, **konsultasi keuangan**, atau **penjadwalan ulang pembayaran** untuk mencegah dropout akibat kendala biaya.
 
-5. **Perhatikan Profil Usia Masuk**
+5. **Perhatikan Profil Usia Masuk**    
    Sediakan program adaptasi khusus untuk mahasiswa dengan usia non-konvensional, misalnya yang masuk setelah bekerja atau baru lulus sekolah, agar mereka bisa menyesuaikan diri dengan lingkungan akademik.
 
 ### 🧾 **Kesimpulan**

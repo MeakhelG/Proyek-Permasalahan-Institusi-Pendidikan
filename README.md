@@ -86,8 +86,28 @@ Untuk melihat **dashboard** secara langsung, Anda dapat menggunakan **Metabase**
 
 Dengan mengikuti langkah-langkah ini, Anda dapat memulai **analisis data** dan **dashboard**, serta melihat hasil visualisasi langsung di **Metabase**.
 
-## Business Dashboard
-Jelaskan tentang business dashboard yang telah dibuat. Jika ada, sertakan juga link untuk mengakses dashboard tersebut.
+## 📊 Business Dashboard
+### Ringkasan Dashboard
+Dashboard ini menyajikan analisis terhadap **4.424 mahasiswa** dari sebuah institusi pendidikan untuk memahami dan memitigasi penyebab mahasiswa **dropout**. Sebanyak **1.421 mahasiswa** telah keluar (dropout), dan model prediktif mengidentifikasi **521 mahasiswa lain berisiko tinggi** dropout (dengan probabilitas > 0,8). Hasil ini mendukung **901 prediksi dropout** dari model machine learning yang dibangun.
+
+### Faktor Utama Dropout Mahasiswa
+Terdapat 10 fitur paling berpengaruh terhadap kemungkinan mahasiswa dropout. Faktor yang paling dominan adalah **nilai mata kuliah semester 2** (25,92%), disusul **nilai semester 1** (14,4%), dan **jumlah SKS semester 2** (12,18%). Faktor lainnya mencakup **nilai saat masuk (admission grade)**, **usia saat masuk**, dan **riwayat akademik sebelumnya**. Hal ini menunjukkan bahwa performa akademik di awal studi menjadi indikator kuat untuk mendeteksi potensi dropout.
+
+### Distribusi dan Pola Dropout
+* **49,9% mahasiswa lulus**, **32,1% dropout**, dan **17,9% masih aktif**.
+* Mahasiswa dengan **nilai akademik rendah di semester awal** cenderung mengalami dropout.
+* **88,1% mahasiswa membayar uang kuliah tepat waktu**, dan mereka memiliki kemungkinan dropout lebih rendah dibandingkan dengan yang tidak membayar.
+* **Usia saat masuk kuliah** juga berpengaruh: mahasiswa yang lebih tua (di atas 23 tahun) menunjukkan tren dropout lebih tinggi.
+* Nilai saat pendaftaran (admission grade) dan nilai kualifikasi sebelumnya juga memperlihatkan korelasi terhadap tingkat keberhasilan studi.
+
+### Mode Aplikasi dan Risiko Dropout
+Mahasiswa yang masuk melalui jalur **2nd Phase General Contingent** dan **Over 23 Years Old** memiliki tingkat dropout tertinggi, mengindikasikan bahwa mode aplikasi tertentu cenderung memiliki risiko lebih tinggi terhadap kegagalan studi. Sementara itu, jalur seperti **Technological Specialization Diploma Holders** dan **International Student (Bachelor)** memiliki risiko lebih rendah.
+
+### Tren Risiko Akademik
+Visualisasi tren risiko memperlihatkan bahwa semakin tinggi nilai pada **Curricular Units Semester 1 & 2**, maka **probabilitas dropout menurun**. Begitu pula dengan **admission grade**—mahasiswa dengan nilai awal yang tinggi memiliki risiko lebih rendah. Ini memperkuat pentingnya **intervensi dini di awal semester** untuk mencegah dropout.
+
+### Prediksi Model
+Model prediksi mampu mengidentifikasi mahasiswa dengan risiko tinggi dropout. Tabel prediksi menampilkan mahasiswa dengan kombinasi karakteristik seperti **usia lebih dari 23 tahun**, **nilai akademik rendah**, dan **nilai admission di bawah rata-rata**. Mereka menjadi prioritas utama untuk diberikan bimbingan, dukungan akademik, atau intervensi administratif agar dapat menyelesaikan studinya.
 
 ## Menjalankan Sistem Machine Learning
 Jelaskan cara menjalankan protoype sistem machine learning yang telah dibuat. Selain itu, sertakan juga link untuk mengakses prototype tersebut.

@@ -89,17 +89,17 @@ Dengan mengikuti langkah-langkah ini, Anda dapat memulai **analisis data** dan *
 Dashboard ini menyajikan analisis terhadap **4.424 mahasiswa** dari sebuah institusi pendidikan untuk memahami dan memitigasi penyebab mahasiswa **dropout**. Sebanyak **1.421 mahasiswa** telah keluar (dropout), dan model prediktif mengidentifikasi **521 mahasiswa lain berisiko tinggi** dropout (dengan probabilitas > 0,8). Hasil ini mendukung **901 prediksi dropout** dari model machine learning yang dibangun.
 
 ### Faktor Utama Dropout Mahasiswa
-Terdapat 10 fitur paling berpengaruh terhadap kemungkinan mahasiswa dropout. Faktor yang paling dominan adalah **nilai mata kuliah semester 2** (25,92%), disusul **nilai semester 1** (14,4%), dan **jumlah SKS semester 2** (12,18%). Faktor lainnya mencakup **nilai saat masuk (admission grade)**, **usia saat masuk**, dan **riwayat akademik sebelumnya**. Hal ini menunjukkan bahwa performa akademik di awal studi menjadi indikator kuat untuk mendeteksi potensi dropout.
+Terdapat 10 fitur paling berpengaruh terhadap kemungkinan mahasiswa dropout. Faktor yang paling dominan adalah **mata kuliah semester 2 yang di approved** (25,92%), disusul **mata kuliah semester 1 yang di approved** (14,4%), dan **nilai dari semester 2 dan semester 1** (12,18% dan 8,6%). Faktor lainnya mencakup **nilai saat masuk (admission grade)**, **usia saat masuk**, **nilai akademik sebelumnya**, dan seterusnya. Hal ini menunjukkan bahwa performa akademik di awal studi menjadi indikator kuat untuk mendeteksi potensi dropout.
 
 ### Distribusi dan Pola Dropout
 * **49,9% mahasiswa lulus**, **32,1% dropout**, dan **17,9% masih aktif**.
 * Mahasiswa dengan **nilai akademik rendah di semester awal** cenderung mengalami dropout.
-* **88,1% mahasiswa membayar uang kuliah tepat waktu**, dan mereka memiliki kemungkinan dropout lebih rendah dibandingkan dengan yang tidak membayar.
+* **88,1% mahasiswa membayar uang kuliah tepat waktu**, dan mereka memiliki kemungkinan dropout lebih rendah dibandingkan dengan yang tidak tepat waktu.
 * **Usia saat masuk kuliah** juga berpengaruh: mahasiswa yang lebih tua (di atas 23 tahun) menunjukkan tren dropout lebih tinggi.
 * Nilai saat pendaftaran (admission grade) dan nilai kualifikasi sebelumnya juga memperlihatkan korelasi terhadap tingkat keberhasilan studi.
 
 ### Mode Aplikasi dan Risiko Dropout
-Mahasiswa yang masuk melalui jalur **2nd Phase General Contingent** dan **Over 23 Years Old** memiliki tingkat dropout tertinggi, mengindikasikan bahwa mode aplikasi tertentu cenderung memiliki risiko lebih tinggi terhadap kegagalan studi. Sementara itu, jalur seperti **Technological Specialization Diploma Holders** dan **International Student (Bachelor)** memiliki risiko lebih rendah.
+Mahasiswa yang masuk melalui jalur **Over 23 Years Old** dan **Holders of Other Higher Courses** memiliki tingkat dropout lebih tinggi, mengindikasikan bahwa mode aplikasi tertentu cenderung memiliki risiko lebih tinggi terhadap kegagalan studi. Sementara itu, jalur seperti **General Contingent** dan **Technological Specialization Diploma Holders** memiliki risiko lebih rendah.
 
 ### Tren Risiko Akademik
 Visualisasi tren risiko memperlihatkan bahwa semakin tinggi nilai pada **Curricular Units Semester 1 & 2**, maka **probabilitas dropout menurun**. Begitu pula dengan **admission grade**—mahasiswa dengan nilai awal yang tinggi memiliki risiko lebih rendah. Ini memperkuat pentingnya **intervensi dini di awal semester** untuk mencegah dropout.

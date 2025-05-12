@@ -159,7 +159,8 @@ Model **Random Forest** memberikan performa terbaik:
 - Accuracy: **84.07%**
 - Precision: **85.55%**
 - Recall: **90.51%**
-- F1-Score: **87.96%**    
+- F1-Score: **87.96%**
+
 Model ini menunjukkan **akurasi dan sensitivitas yang sangat baik**, khususnya dalam mendeteksi mahasiswa yang berisiko dropout, menjadikannya alat prediksi yang handal untuk intervensi dini.
 
 ### 📊 Feature Importance (Top 8)

@@ -193,9 +193,9 @@ def main():
     # Memprediksi hasil
     @st.dialog('Hasil')
     def hasil(output):
-        status = "Graduate" if output == 1 else "Dropout"
+        status = "Not Dropout" if output == 1 else "Dropout"
         # Menambahkan gaya menggunakan Markdown (terbatas pada warna teks)
-        if status == "Graduate":
+        if status == "Not Dropout":
             st.markdown(f"### Student Status Prediction: **{status}**")
         else:
             st.markdown(f"### Student Status Prediction: **{status}**")

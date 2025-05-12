@@ -132,10 +132,10 @@ def main():
             help='Kelas yang diambil mahasiswa')
     col1, col2= st.columns([4, 4])
     with col1:
-        Previous_qualification_grade = st.number_input(label='Previous Qualification Grade', value=80, min_value=0, max_value=200, 
+        Previous_qualification_grade = st.number_input(label='Previous Qualification Grade', value=135, min_value=0, max_value=200, 
             help='Nilai kualifikasi mahasiswa sebelumnya')
     with col2:
-        Admission_grade = st.number_input(label='Admission Grade', value=80, min_value=0, max_value=200, 
+        Admission_grade = st.number_input(label='Admission Grade', value=135, min_value=0, max_value=200, 
             help='Nilai admission mahasiswa')
 
     # DATA KIINERJA AKADEMIK
@@ -201,7 +201,7 @@ def main():
             st.markdown(f"### Student Status Prediction: **{status}**")
 
     # Tombol prediksi
-    if st.button('✨ Prediksi'):
+    if st.button('🔎 Prediksi'):
         X_encoded = encoding(predict_df)
         model = joblib.load('./model/joblib_model.pkl')
         # with open('pickle_model.pkl', 'rb') as file:

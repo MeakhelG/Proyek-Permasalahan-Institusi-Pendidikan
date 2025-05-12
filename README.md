@@ -125,8 +125,8 @@ Prototype sistem machine learning ini bertujuan untuk memprediksi status mahasis
    * ### **Data Latar Belakang Pendidikan**
      * *Application Mode* (misal: `1st Phase - General Contingent`)
      * *Course* (pilih program studi, contoh: `Biofuel Production Technologies`)
-     * *Previous Qualification Grade* (misal: `80`)
-     * *Admission Grade* (misal: `80`)
+     * *Previous Qualification Grade* (misal: `135`)
+     * *Admission Grade* (misal: `135`)
 
    * ### **Data Kinerja Akademik**
      Isikan nilai dan jumlah SKS yang telah disetujui maupun nilai evaluasi:
@@ -141,8 +141,7 @@ Prototype sistem machine learning ini bertujuan untuk memprediksi status mahasis
    * Model tersebut memiliki **akurasi sebesar 84%**, seperti ditampilkan pada antarmuka.
 
 4. **Hasil akan muncul dalam bentuk pop-up**, misalnya:
-   * `Student Status Prediction: Dropout`
-   * atau
+   * `Student Status Prediction: Dropout`, atau
    * `Student Status Prediction: Not Dropout`
 
 ### 📌 Penjelasan Teknis Singkat:

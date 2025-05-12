@@ -65,9 +65,7 @@ Proyek ini memerlukan lingkungan yang sederhana untuk menjalankan **analisis dat
 - Pastikan **dependensi**, **paket**, dan **library** yang dibutuhkan telah tersedia. Lihat **file `requirements.txt`** untuk mengetahui daftar dependensi yang diperlukan.
 - Jalankan seluruh isi **notebook.ipynb** di **Google Colab** atau IDE sejenis untuk melihat hasil dari **analisis data**, temuan, dan **insight** yang diperoleh.
 
-
-
-#### **3. Menjalankan Dashboard**
+#### **2. Menjalankan Dashboard**
 Untuk melihat **dashboard** secara langsung, Anda dapat menggunakan **Metabase** dengan bantuan **Docker**. Pastikan **Docker** telah terpasang di sistem Anda.
 **Langkah-langkah untuk menjalankan Metabase menggunakan Docker**:
 1. **Tarik (pull) image Metabase dari Docker Hub** dengan perintah:
@@ -161,7 +159,7 @@ Model **Random Forest** memberikan performa terbaik:
 - Accuracy: **84.07%**
 - Precision: **85.55%**
 - Recall: **90.51%**
-- F1-Score: **87.96%**
+- F1-Score: **87.96%**    
 Model ini menunjukkan **akurasi dan sensitivitas yang sangat baik**, khususnya dalam mendeteksi mahasiswa yang berisiko dropout, menjadikannya alat prediksi yang handal untuk intervensi dini.
 
 ### 📊 Feature Importance (Top 8)

@@ -12,12 +12,12 @@ Submission proyek menyelesaikan permasalahan Institusi Pendidikan ini adalah seb
 - `model/` : Folder yang menyimpan semua model prediksi yang digunakan dalam proyek.
   - `joblib_model.pkl`: File model Random Forest Classifier yang disimpan oleh joblib dari hasil modeling di `notebook.ipynb`.
   - `pickle_model.pkl`: File model Random Forest Classifier yang disimpan oleh pickle dari hasil modeling di `notebook.ipynb`.
+- `app.py`: File yang digunakan untuk menjalankan prediksi machine learning berbasis Streamlit.
 - `meakhelg-dashboard-1.jpg` : Halaman pertama dashboard.
 - `meakhelg-dashboard-2.jpg` : Halaman kedua dashboard.
 - `meakhelg-dashboard.pdf`: File dashboard yang telah saya buat untuk submission kali ini dalam bentuk PDF.
 - `meakhelg-video.mkv`: Video penjelasan business dashboard yang telah dibuat dan kesimpulan dari dashboard tersebut.
 - `metabase.db.mv.db`: File database dari Metabase.
-- `app.py`: File yang digunakan untuk menjalankan prediksi machine learning berbasis Streamlit.
 - `notebook.ipynb`: File yang digunakan untuk melakukan Data Understanding, EDA, hingga Modeling, Evaluasi, dan Konklusi.
 - `README.md`: File dokumentasi.
 

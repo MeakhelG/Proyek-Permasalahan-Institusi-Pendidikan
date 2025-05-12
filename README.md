@@ -109,12 +109,47 @@ Visualisasi tren risiko memperlihatkan bahwa semakin tinggi nilai pada **Curricu
 ### Prediksi Model
 Model prediksi mampu mengidentifikasi mahasiswa dengan risiko tinggi dropout. Tabel prediksi menampilkan mahasiswa dengan kombinasi karakteristik seperti **usia lebih dari 23 tahun**, **nilai akademik rendah**, dan **nilai admission di bawah rata-rata**. Mereka menjadi prioritas utama untuk diberikan bimbingan, dukungan akademik, atau intervensi administratif agar dapat menyelesaikan studinya.
 
-## Menjalankan Sistem Machine Learning
-Jelaskan cara menjalankan protoype sistem machine learning yang telah dibuat. Selain itu, sertakan juga link untuk mengakses prototype tersebut.
+## 🧠 Menjalankan Sistem Machine Learning
+Prototype sistem machine learning ini bertujuan untuk memprediksi status mahasiswa di Jaya Jaya Institut, apakah mereka **akan dropout atau tidak**, berdasarkan data individual mahasiswa.
 
-```
+### ✅ Langkah-langkah Menjalankan Prototype:
+1. **Buka aplikasi prototype** melalui link berikut:
+   👉 [Link Aplikasi Streamlit](https://meakhelg-proyek-permasalahan-institusi-pendidikan.streamlit.app/)
 
-```
+2. **Isi seluruh field input sesuai data yang diinginkan**, yang terbagi dalam beberapa bagian:
+   * ### **Data Demografis**
+     * Umur saat mendaftar (contoh: `20`)
+     * Jenis kelamin (`Laki-laki` atau `Perempuan`)
+     * Displaced (centang jika mahasiswa adalah pengungsi/terkena relokasi)
+       
+   * ### **Data Latar Belakang Pendidikan**
+     * *Application Mode* (misal: `1st Phase - General Contingent`)
+     * *Course* (pilih program studi, contoh: `Biofuel Production Technologies`)
+     * *Previous Qualification Grade* (misal: `80`)
+     * *Admission Grade* (misal: `80`)
+
+   * ### **Data Kinerja Akademik**
+     Isikan nilai dan jumlah SKS yang telah disetujui maupun nilai evaluasi:
+     * Curricular Units 1st/2nd Semester (Approved, Grade, Eval)
+
+   * ### **Data Kondisi Ekonomi**
+     * Centang jika *Tuition fees up to date*
+     * Centang jika *Debtor* (mahasiswa memiliki utang biaya)
+
+3. **Klik tombol “🔎 Prediksi”**
+   * Sistem akan menjalankan model machine learning yang telah dilatih sebelumnya.
+   * Model tersebut memiliki **akurasi sebesar 84%**, seperti ditampilkan pada antarmuka.
+
+4. **Hasil akan muncul dalam bentuk pop-up**, misalnya:
+   * `Student Status Prediction: Dropout`
+   * atau
+   * `Student Status Prediction: Not Dropout`
+
+### 📌 Penjelasan Teknis Singkat:
+* Sistem ini dibangun dengan framework **Streamlit**, yang menghubungkan antarmuka pengguna dengan model machine learning berbasis Python.
+* Model telah melalui proses pelatihan (training) menggunakan data historis mahasiswa.
+* Saat pengguna mengisi form, data tersebut akan di _encoding_ menjadi input numerik dan kategorikal yang sesuai dengan format model.
+* Model kemudian memprediksi status mahasiswa dan hasilnya ditampilkan langsung.
 
 ## 🔍 Conclusion
 ### 🎯 Temuan Utama

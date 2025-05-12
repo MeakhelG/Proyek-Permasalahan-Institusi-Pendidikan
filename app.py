@@ -196,9 +196,9 @@ def main():
         status = "Not Dropout" if output == 1 else "Dropout"
         # Menambahkan gaya menggunakan Markdown (terbatas pada warna teks)
         if status == "Not Dropout":
-            st.markdown(f"### Student Status Prediction: **{status}**")
+            st.markdown(f"### Prediksi Status Mahasiswa: **{status}**")
         else:
-            st.markdown(f"### Student Status Prediction: **{status}**")
+            st.markdown(f"### Prediksi Status Mahasiswa: **{status}**")
 
     # Tombol prediksi
     if st.button('🔎 Prediksi'):
